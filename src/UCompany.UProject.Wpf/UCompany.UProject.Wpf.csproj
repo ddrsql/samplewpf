@@ -1,0 +1,53 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <BaseOutputPath>..\..\build\</BaseOutputPath>
+    <UserSecretsId>2f1ac190-35e0-4261-828d-f28c3b746de9</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AvaloniaResource Include="Assets\**" />
+    <None Remove=".gitignore" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TrimmerRootDescriptor Include="Roots.xml" />
+  </ItemGroup>
+
+	<Import Project="../../AvaloniaDependency.props" />
+  <ItemGroup>
+	  <!--<PackageReference Include="Abp.Castle.Log4Net" Version="7.3.0" />-->
+	  <PackageReference Include="Castle.Core-Serilog" Version="4.4.1" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.4">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+	  </PackageReference>
+	  <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\infrastructure\UCompany.UProject.Wpf.Infrastructure\UCompany.UProject.Wpf.Infra.csproj" />
+    <ProjectReference Include="..\module\people\UCompany.UProject.People.Application.Contracts\UCompany.UProject.People.Application.Contracts.csproj" />
+    <ProjectReference Include="..\module\people\UCompany.UProject.People.Module\UCompany.UProject.People.Module.csproj" />
+    <ProjectReference Include="..\module\todolist\UCompany.UProject.TodoList.Module\UCompany.UProject.TodoList.Module.csproj" />
+    <ProjectReference Include="..\platform\UCompany.Platform.Application\UCompany.Platform.Application.csproj" />
+    <ProjectReference Include="..\platform\UCompany.Platform.Core\UCompany.Platform.Core.csproj" />
+    <ProjectReference Include="..\platform\UCompany.Platform.EntityFrameworkCore\UCompany.Platform.EntityFrameworkCore.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\MenuItem.axaml.cs">
+      <DependentUpon>MenuItem.axaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>

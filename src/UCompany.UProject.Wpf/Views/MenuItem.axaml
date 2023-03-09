@@ -1,0 +1,56 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:prism="http://prismlibrary.com/"
+			 prism:ViewModelLocator.AutoWireViewModel="True" 
+			 xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity" 
+			 xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
+			 xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+			 xmlns:controls="clr-namespace:Material.Styles.Controls;assembly=Material.Styles"
+             mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="450" Name="MenuItem"
+             x:Class="UCompany.UProject.Wpf.Views.MenuItemUC">
+	
+		<UserControl.Resources>
+			<DataTemplate x:Key="LisBoxItemTemplate">
+				<Grid HorizontalAlignment="Stretch" Width="{Binding $parent[ListBox].Width}">
+					<StackPanel Orientation="Horizontal" Margin="0,0,0,0" VerticalAlignment="Center" Width="300">
+						<avalonia:MaterialIcon Kind="AppleFinder" />
+						<TextBlock Margin="0,0,0,0" HorizontalAlignment="Center" Text="{Binding Name}">
+						</TextBlock>
+					</StackPanel>
+					<i:Interaction.Behaviors>
+						<ia:EventTriggerBehavior EventName="PointerReleased">
+							<ia:InvokeCommandAction Command="{Binding Path=DataContext.MenuCommand,ElementName=MenuItem,RelativeSource={RelativeSource AncestorType={x:Type ListBox} AncestorLevel=2}}" CommandParameter="{Binding .}" />
+						</ia:EventTriggerBehavior>
+					</i:Interaction.Behaviors>
+					<!--<Button Classes="RemoveItemButton" Tag="{Binding}" IsVisible="{Binding $parent[ListBoxItem].IsSelected}" CommandParameter="{Binding .}"
+        Command="{Binding DataContext.MenuCommand,RelativeSource={RelativeSource AncestorType={x:Type ListBox} AncestorLevel=2}}"/>-->
+				</Grid>
+			</DataTemplate>
+		</UserControl.Resources>
+	<Grid>
+		<ListBox BorderBrush="Transparent" Margin="-10,0,-10,0" VerticalAlignment="Stretch" 
+				 Items="{Binding ItemMenus}">
+
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<!--这里绑定ListBoxItem的IsSelected可以控制只展开一项-->
+					<!--去掉绑定的话，可以展开多项-->
+					<!--IsExpanded="{Binding $parent[ListBoxItem].IsSelected}"-->
+					<Expander Header="{Binding Name}"
+							Foreground="White" Width="{Binding $parent[ListBox].Width}" Padding="0,0,0,0" Margin="0,-10,0,-10"
+							HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+						<ListBox Items="{Binding SubItems}" 
+							 ItemTemplate="{StaticResource LisBoxItemTemplate}">
+
+						</ListBox>
+					</Expander>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+	</Grid>
+	
+	
+
+</UserControl>

@@ -1,0 +1,37 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450" Name="asdf"
+             x:Class="UCompany.UProject.Wpf.Views.UserControl1">
+	<Grid>
+		<TabControl AutoScrollToSelectedItem="True" Classes="Scrollable">
+			<TabControl.Items>
+				<TabItem Header="Item 1">
+					<TextBlock Classes="Centered" Text="Page 1" />
+				</TabItem>
+				<TabItem Header="Item 2">
+					<TextBlock Classes="Centered" Text="Page 2" />
+				</TabItem>
+				<TabItem Header="Item 3">
+					<TextBlock Classes="Centered" Text="Page 3" />
+				</TabItem>
+				<TabItem Header="Item 4">
+					<TextBlock Classes="Centered" Text="Page 4" />
+				</TabItem>
+				<TabItem Header="Item 5">
+					<TextBlock Classes="Centered" Text="Page 5" />
+				</TabItem>
+				<TabItem Header="Item 6">
+					<TextBlock Classes="Centered" Text="Page 6" />
+				</TabItem>
+				<TabItem Header="Item 7">
+					<TextBlock Classes="Centered" Text="Page 7" />
+				</TabItem>
+				<TabItem Header="Item 8">
+					<TextBlock Classes="Centered" Text="Page 8" />
+				</TabItem>
+			</TabControl.Items>
+		</TabControl>
+	</Grid>
+</UserControl>

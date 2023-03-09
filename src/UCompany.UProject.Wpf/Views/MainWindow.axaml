@@ -1,0 +1,173 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:region="clr-namespace:UCompany.UProject.Wpf.Infra.Constants;assembly=UCompany.UProject.Wpf.Infra"
+		xmlns:prism="http://prismlibrary.com/"
+		prism:RegionManager.RegionManager="{Binding RegionMannager}"
+		prism:ViewModelLocator.AutoWireViewModel="True"
+		xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+		xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
+        xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+        xmlns:controls="clr-namespace:Material.Styles.Controls;assembly=Material.Styles"
+        xmlns:dialogHostAvalonia="clr-namespace:DialogHostAvalonia;assembly=DialogHost.Avalonia"
+		xmlns:views="clr-namespace:UCompany.UProject.Wpf.Views"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        Width="1280" Height="720" MinWidth="720"
+        x:Class="UCompany.UProject.Wpf.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Avalonia.Wpf">
+	<Window.Styles>
+		<Style Selector="TextBlock.Subheadline">
+			<Setter Property="Margin" Value="0, 16" />
+		</Style>
+		<Style Selector="TextBlock.Subheadline2">
+			<Setter Property="Margin" Value="0, 8" />
+		</Style>
+		<Style Selector="TextBlock.Content">
+			<Setter Property="Margin" Value="0, 4" />
+			<Setter Property="HorizontalAlignment" Value="Left" />
+		</Style>
+	</Window.Styles>
+
+	<controls:SnackbarHost HostName="Root" TemplateApplied="TemplatedControl_OnTemplateApplied">
+		
+		<controls:NavigationDrawer Name="LeftDrawer" Classes="permanent" LeftDrawerOpened="{Binding ElementName=NavDrawerSwitch, Path=IsChecked, Mode=TwoWay}">
+			<controls:NavigationDrawer.LeftDrawerContent>
+				<ScrollViewer>
+					<StackPanel>
+						<controls:ColorZone Mode="Accent" Height="60">
+							<StackPanel>
+								<!--<Image Width="120" Height="120" HorizontalAlignment="Center" VerticalAlignment="Top"
+                                       Source="avares://Material.Demo/Assets/FavIcon_200x.png" Margin="0,0,0,-8"
+                                       PointerPressed="MaterialIcon_OnPointerPressed" />-->
+								<TextBlock Margin="0,20,0,0" Classes="Headline6" Text="切换" HorizontalAlignment="Center" PointerPressed="MaterialIcon_OnPointerPressed"/>
+							</StackPanel>
+						</controls:ColorZone>
+						<views:MenuItemUC></views:MenuItemUC>						
+					</StackPanel>
+				</ScrollViewer>
+			</controls:NavigationDrawer.LeftDrawerContent>
+			
+			<DockPanel LastChildFill="true">
+				<!--<StackPanel>
+					<ContentControl prism:RegionManager.RegionName="PeopleRegion" Margin="5"/>
+					<Button x:Name="MoveLeftButton" Content="Move Left" Theme="{StaticResource OutlineButton}" Classes="light" ToolTip.Tip="tip提示"  Margin="5,0,0,5">
+						<i:Interaction.Behaviors>
+							<ia:EventTriggerBehavior EventName="Click" SourceObject="MoveLeftButton">
+								<ia:InvokeCommandAction Command="{Binding LoadCommand}" />
+							</ia:EventTriggerBehavior>
+						</i:Interaction.Behaviors>
+					</Button>
+				</StackPanel>-->
+				<controls:ColorZone Name="PART_AppBarContainer" VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                                  DockPanel.Dock="Top"
+                                  Height="56" Mode="PrimaryMid" ZIndex="1">
+					<Grid Margin="16">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="24" />
+							<ColumnDefinition Width="32" />
+							<ColumnDefinition Width="*" />
+							<ColumnDefinition Width="32" />
+							<ColumnDefinition Width="Auto" />
+						</Grid.ColumnDefinitions>
+						<ToggleButton Name="NavDrawerSwitch"
+                                      Foreground="{DynamicResource MaterialDesignBody}"
+                                      Width="32" Height="32" Padding="4">
+							<avalonia:MaterialIcon Kind="Menu" Width="24" Height="24" />
+						</ToggleButton>
+						<TextBlock Grid.Column="2" Classes="Headline6" Text="Material.Avalonia Demo"
+                                   VerticalAlignment="Center" />
+						<Menu Grid.Column="4" Height="32" Padding="0" Margin="0">
+							<MenuItem Height="32" Width="32" Header="{avalonia:MaterialIconExt DotsVertical, Size=24}">
+								<MenuItem Header="Hello!">
+									<MenuItem.Icon>
+										<avalonia:MaterialIcon Kind="Hand" Width="24" Height="24" />
+									</MenuItem.Icon>
+								</MenuItem>
+								<Separator />
+								<MenuItem Header="Action 1" />
+								<MenuItem Header="Action 2" />
+								<MenuItem Header="Action 3" />
+								<Separator />
+								<MenuItem Header="Goodbye">
+									<MenuItem.Icon>
+										<avalonia:MaterialIcon Kind="ExitRun" Width="24" Height="24" />
+									</MenuItem.Icon>
+								</MenuItem>
+							</MenuItem>
+						</Menu>
+					</Grid>
+				</controls:ColorZone>
+				<ContentControl prism:RegionManager.RegionName="{x:Static region:RegionNames.ContentRegion}" Margin="5"/>
+
+				<!--<TabControl x:Name="MyTab" Margin="5" prism:RegionManager.RegionName="TabRegion">
+					<TabControl.ItemTemplate>
+						<DataTemplate>
+							<DockPanel DataContext="{Binding Path=DataContext, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type TabItem}}}">
+								<Grid DockPanel.Dock="Right" Margin="6,0,2,0">
+									<Button Cursor="Hand" FontWeight="Bold" Width="24" Height="24" HorizontalAlignment="Center" VerticalAlignment="Center" >
+										<Button.Content>
+											<TextBlock Text="X" Foreground="Red" VerticalAlignment="Center"/>
+										</Button.Content>
+									</Button>
+								</Grid>
+								<ContentPresenter Content="{Binding Title}" VerticalAlignment="Center" />
+							</DockPanel>
+						</DataTemplate>
+					</TabControl.ItemTemplate>
+				</TabControl>
+			
+				<TabControl Items="{Binding Modules}">
+					<TabControl.ItemTemplate>
+						<DataTemplate>
+							<DockPanel DataContext="{Binding Path=DataContext, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type TabItem}}}">
+								<Grid DockPanel.Dock="Right">
+									<Button Theme="{StaticResource OutlineButton}" Classes="light" ToolTip.Tip="关闭" Command="{Binding CloseTabCommand}" CommandParameter="{Binding Path=.}" >
+										<Button.Content>
+											<TextBlock Text="X" Foreground="Red" VerticalAlignment="Center"/>
+										</Button.Content>
+									</Button>
+								</Grid>
+								<TextBlock Text="{Binding Name}"/>
+								<ContentPresenter Content="{Binding Name}" VerticalAlignment="Center" />
+							</DockPanel>
+						</DataTemplate>
+					</TabControl.ItemTemplate>
+					<TabControl.ContentTemplate>
+						<DataTemplate>
+							<StackPanel Orientation="Vertical" Spacing="8">
+								<TextBlock Text="{Binding Name}"/>
+								<ContentControl Content="{Binding UC}" Margin="5"/>
+							</StackPanel>
+						</DataTemplate>
+					</TabControl.ContentTemplate>
+				</TabControl>-->
+				
+			</DockPanel>
+
+			
+			
+		</controls:NavigationDrawer>
+
+	</controls:SnackbarHost>
+
+	<!--<StackPanel>
+		<StackPanel>
+			<ContentControl prism:RegionManager.RegionName="{x:Static region:RegionNames.TodoListRegion}" Margin="5"/>
+		</StackPanel>
+
+		<StackPanel>
+			<ContentControl prism:RegionManager.RegionName="PeopleRegion" Margin="5"/>
+			<Button x:Name="MoveLeftButton" Content="Move Left" Grid.Row="1" Grid.Column="0" Margin="5,0,0,5">
+				<i:Interaction.Behaviors>
+					<ia:EventTriggerBehavior EventName="Click" SourceObject="MoveLeftButton">
+						<ia:InvokeCommandAction Command="{Binding LoadCommand}" />
+					</ia:EventTriggerBehavior>
+				</i:Interaction.Behaviors>
+			</Button>
+		</StackPanel>
+
+	</StackPanel>-->
+	
+</Window>

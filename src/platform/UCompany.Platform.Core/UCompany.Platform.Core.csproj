@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <VersionPrefix>1.0.0.0</VersionPrefix>
+    <TargetFramework>net6.0</TargetFramework>
+    <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
+    <AssemblyName>UCompany.Platform.Core</AssemblyName>
+    <PackageId>UCompany.Platform.Core</PackageId>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <UserSecretsId>AbpCompanyName-UCompany.Platform-56C2EF2F-ABD6-4EFC-AAF2-2E81C34E8FB1</UserSecretsId>
+    <RootNamespace>UCompany.Platform</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Localization\SourceFiles\*.xml" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Abp.AutoMapper" Version="7.3.0" />
+    <PackageReference Include="Abp.ZeroCore.EntityFrameworkCore" Version="7.3.0" />
+    <PackageReference Include="Castle.Windsor.MsDependencyInjection" Version="3.4.0" />
+	  <PackageReference Include="Serilog.Exceptions" Version="8.4.0" />
+	  <PackageReference Include="Serilog.Exceptions.EntityFrameworkCore" Version="8.4.0" />
+	  <PackageReference Include="Serilog.Extensions.Logging" Version="3.1.0" />
+	  <PackageReference Include="Serilog.Settings.Configuration" Version="3.4.0" />
+	  <PackageReference Include="Serilog.Sinks.Console" Version="4.1.0" />
+	  <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+	<Import Project="../../../../AvaloniaDependency.props" />
+	<ItemGroup>
+	  <ProjectReference Include="..\UCompany.UProject.People.Application.Contracts\UCompany.UProject.People.Application.Contracts.csproj" />
+	</ItemGroup>
+
+</Project>

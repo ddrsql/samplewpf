@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+	<Import Project="../../../../AvaloniaDependency.props" />
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\infrastructure\UCompany.UProject.Wpf.Infrastructure\UCompany.UProject.Wpf.Infra.csproj" />
+	  <ProjectReference Include="..\..\..\platform\UCompany.Platform.Application\UCompany.Platform.Application.csproj" />
+	</ItemGroup>
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+	  <Exec Command="xcopy &quot;$(TargetPath)&quot; &quot;$(SolutionDir)\build\$(ConfigurationName)\net6.0\Modules\TodoList\&quot; /R /Y&#xD;&#xA;if &quot;$(ConfigurationName)&quot;==&quot;Debug&quot; xcopy &quot;$(TargetDir)$(TargetName).pdb&quot; &quot;$(SolutionDir)build\$(ConfigurationName)\net6.0\Modules\TodoList\&quot; /R /Y" />
+	</Target>
+
+</Project>
